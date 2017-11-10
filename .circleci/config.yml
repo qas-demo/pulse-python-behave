@@ -44,9 +44,11 @@ jobs:
           name: run tests
           command: |
             . venv/bin/activate
-            python manage.py test
+            behave --junit --junit-directory=/tmp/test-results -o test-reports
 
       - store_artifacts:
           path: test-reports
           destination: test-reports
           
+      - store_test_results:
+          path: /tmp/test-results
